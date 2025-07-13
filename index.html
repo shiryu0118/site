@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="mb-4">ツール活用事例検索サイト</h1>
+<form id="searchForm" class="mb-3">
+  <div class="input-group">
+    <input type="text" class="form-control" id="toolName" name="tool_name" placeholder="ツール名を入力" required>
+    <button class="btn btn-primary" type="submit">検索</button>
+  </div>
+</form>
+<div id="resultArea"></div>
+<div class="mt-3">
+  <button id="bulkValidBtn" class="btn btn-success me-2" style="display:none;">一括有効</button>
+  <button id="bulkInvalidBtn" class="btn btn-danger" style="display:none;">一括無効</button>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/main.js"></script>
+{% endblock %}
