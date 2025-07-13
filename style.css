@@ -1,0 +1,21 @@
+body {
+  background: #f8f9fa;
+}
+#resultArea {
+  margin-top: 1.5em;
+}
+.article-item {
+  border: 1px solid #dee2e6;
+  border-radius: 0.5em;
+  padding: 1em;
+  margin-bottom: 1em;
+  background: #fff;
+}
+.article-title {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+} 

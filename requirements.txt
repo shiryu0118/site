@@ -1,0 +1,8 @@
+Flask>=3.0
+python-dotenv
+gspread
+google-auth
+sqlalchemy
+requests
+beautifulsoup4
+requests-cache

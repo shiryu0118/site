@@ -1,0 +1,33 @@
+name: Deploy to Render
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Log in to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push Docker image
+        run: |
+          docker build -t toolcases-web:latest .
+      - name: Install Render CLI
+        run: |
+          curl -fsSL https://render.com/cli/install.sh | bash
+          echo "export PATH=\"$HOME/.render/bin:$PATH\"" >> $GITHUB_ENV
+      - name: Render login
+        run: render login --api-key "$RENDER_API_KEY"
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+      - name: Render deploy (blueprint)
+        run: render blueprint apply render.yaml
+      - name: Render verify domain
+        run: render domains verify toolcases.com 

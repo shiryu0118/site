@@ -1,0 +1,13 @@
+services:
+  - name: toolcases-web
+    type: web
+    runtime: docker
+    plan: free
+    envVars:
+      - key: GSHEET_ID
+        value: __SET_LATER__
+      - key: CREDENTIALS_JSON
+        value: ${{ secret:RENDER_SA_JSON }}
+    domains:
+      - toolcases.com
+      - www.toolcases.com 
